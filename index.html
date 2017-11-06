@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>旋转轮播</title>
+    <link rel="stylesheet" href="css/mycss.css">
+    <script src="js/animation.js"></script>
+    <script>
+        window.onload = function () {
+            var json = [
+                {   //  1
+                    width:600,
+                    top:0,
+                    left:50,
+                    opacity:20,
+                    z:2
+                },
+                {  // 2
+                    width:600,
+                    top:50,
+                    left:0,
+                    opacity:80,
+                    z:3
+                },
+                {   // 3
+                    width:800,
+                    top:100,
+                    left:300,
+                    opacity:100,
+                    z:4
+                },
+                {  // 4
+                    width:600,
+                    top:50,
+                    left:800,
+                    opacity:80,
+                    z:3
+                },
+                {   //5
+                    width:600,
+                    top:0,
+                    left:700,
+                    opacity:20,
+                    z:2
+                }
+            ];
+            var con_left = $("con_left");
+            var con_right = $("con_right");
+            var lis = $("img").children;
+            for(var i = 1;i <= lis.length;i++) {
+                lis[i-1].style.backgroundImage = "url(images/slidepic"+i+".jpg)";
+            }
+            change();
+            var userIn = true;
+            con_left.onclick = function () {
+                if (userIn) {
+                    change(false);
+                }
+                userIn = false;
+            }
+            con_right.onclick = function () {
+                if (userIn) {
+                    change(true);
+                }
+                userIn = false;
+            }
+            function change(flag) {
+                if (flag) {
+                    json.unshift(json.pop());
+                }else {
+                    json.push(json.shift());
+                }
+                for (var i = 0; i < lis.length;i++) {
+                    animation(lis[i],{
+                        width: json[i].width,
+                        top: json[i].top,
+                        left: json[i].left,
+                        opacity:json[i].opacity,
+                        zIndex:json[i].z
+                    },20,function () {
+                        userIn = true;
+                    });
+                }
+            }
+            $("_box").onmouseover = function () {
+                animation(con_left,{"opacity":100},20);
+                animation(con_right,{"opacity":100},20);
+            }
+            $("_box").onmouseout = function () {
+                animation(con_left,{"opacity":30},20);
+                animation(con_right,{"opacity":30},20);
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box" id="_box">
+    <ul id="img">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <span class="contr-left" id="con_left"></span>
+    <span class="contr-right" id="con_right"></span>
+</div>
+</body>
+</html>

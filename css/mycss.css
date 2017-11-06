@@ -1,0 +1,46 @@
+*{margin: 0;padding: 0;}
+.box {
+    width: 1400px;
+    height: 600px;
+    margin: 20px auto;
+    position: relative;
+}
+ul {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+ul li {
+    position: absolute;
+    top:100px;
+    left: 300px;
+    width: 800px;
+    height: 500px;
+}
+
+.contr-left {
+    position: absolute;
+    opacity: 0.3;
+    width: 76px;
+    height: 112px;
+    top:50%;
+    margin-top: -66px;
+    left: 0;
+    background: url("../images/prev.png") no-repeat center;
+    z-index: 99;
+}
+.contr-right {
+    position: absolute;
+    opacity: 0.3;
+    width: 76px;
+    height: 112px;
+    top:50%;
+    margin-top: -66px;
+    right: 0;
+    background: url("../images/next.png") no-repeat center;
+    z-index: 99;
+}
+
+
